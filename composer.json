@@ -1,0 +1,12 @@
+{
+  "name": "gecervantes/328/diner",
+  "description": "My MVC Diner Application",
+  "authors": [
+    {
+    "name": "Giovan Cervantes",
+    "email": "giovancervante@yahoo.com"
+    }],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}

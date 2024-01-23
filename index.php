@@ -32,7 +32,7 @@ $f3 ->route('GET /breakfast', function() {
     echo $view -> render('views/breakfast-menu.html');
 });
 
-$f3 ->route('GET|POST /form-one', function($f3) {
+$f3 ->route('GET|POST /order1', function($f3) {
     // If form has been posted
     if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -45,7 +45,7 @@ $f3 ->route('GET|POST /form-one', function($f3) {
         $f3->set('SESSION.meal', $meal);
 
         // redirect to order2 route
-        $f3->reroute('summary');
+        $f3->reroute('order2');
     }
 
     // Display a view page
@@ -53,12 +53,32 @@ $f3 ->route('GET|POST /form-one', function($f3) {
     echo $view -> render('views/order-form-1.html');
 });
 
+$f3 ->route('GET|POST /order2', function($f3) {
+    // If form has been posted
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+        // validate the data
+
+        $condiment = $_POST['conds[].value'];
+
+        // put the data in the session array
+        $f3->set('SESSION.conds', $condiment);
+
+        // redirect to order2 route
+        $f3->reroute('summary');
+    }
+
+    // Display a view page
+    $view = new Template();
+    echo $view -> render('views/order-form-2.html');
+});
+
 $f3 ->route('GET /summary', function() {
 
-    echo "Thank you for your order!";
     // Display a view page
-//    $view = new Template();
-//    echo $view -> render('views/.html');
+    $view = new Template();
+    echo $view -> render('views/order-summary.html');
 });
 
 // Run Fat-Free
